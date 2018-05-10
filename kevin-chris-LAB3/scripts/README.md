@@ -1,6 +1,6 @@
 # Project Name
 
-**Author**: Your Name Goes Here
+**Author**: Chris Hemenes Kevin Hwangpo
 **Version**: 1.0.0 (increment the patch/fix version number up if you make more commits past your first submission)
 
 ## Overview
@@ -14,7 +14,7 @@ Create a script to link a view to the article. Learn to create functions the wil
 
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
-We used Jquery
+We used Jquery for shorter methods, Normalize.CSS for default settings. Used multiple scripts to stack the js files in use from greatest to lowest. (article.js was the most manipulated)
 
 ## Change Log
 <!-- Use this are to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
@@ -24,3 +24,7 @@ We used Jquery
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 -->
+Credit: Chris H, Kevin H
+1:30- Finished lab.
+9-11:30- Finished half the TODOs
+11:30-1:30- Finished the last of the TODOs with switched partners. 
