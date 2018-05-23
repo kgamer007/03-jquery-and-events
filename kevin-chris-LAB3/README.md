@@ -17,8 +17,6 @@ html
 css
 js jQuery
 
-
-
 ## Change Log
 <!-- Use this are to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
 
