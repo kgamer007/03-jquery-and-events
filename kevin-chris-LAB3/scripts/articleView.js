@@ -17,7 +17,7 @@ articleView.populateFilters = function () {
 
       optionTag = `<option value="${authorName}">${authorName}</option>`;
 
-      console.log(optionTag);
+      // console.log(optionTag);
 
       if ($('#author-filter option[value="' + authorName + '"]').length === 0) {
         $('#author-filter').append(optionTag);
@@ -57,6 +57,21 @@ articleView.handleAuthorFilter = function () {
 };
 
 articleView.handleCategoryFilter = function () {
+
+  // DONE: Just like we do for #author-filter above, we should handle change events on the #category-filter element.
+  // When an option with a value is selected, hide all the articles, then reveal the matches.
+  // When the blank (default) option is selected, show all the articles, except for the template.
+  // Be sure to reset the #author-filter while you are at it!
+  $('#category-filter').on('change', function () {
+    if ($(this).val()) {
+      $('article').hide();
+      $(`article[data-category="${$(this).val()}"]`).fadeIn(1000);
+    } else {
+      $('article').fadeIn(500);
+      $('article[class="template"]').hide();
+    }
+    $('#author-filter').val('');
+
   $('#category-filter').on('change', function() {
 
     if ($(this).val()) {
@@ -70,7 +85,6 @@ articleView.handleCategoryFilter = function () {
       $('.template').hide();
     }
     $('#author-filter').val('');
-
   });
 };
 // DONE: Just like we do for #author-filter above, we should handle change events on the #category-filter element.
@@ -90,6 +104,13 @@ articleView.handleMainNav = function () {
   });
 
   // REVIEW: Now trigger a click on the first .tab element, to set up the page.
+  $('.main-nav').on('click', 'li', function () {
+    let clickNav = $(this).data('content');
+    if (clickNav) {
+      $('.tab-content').hide();
+      $(`#${clickNav}`).fadeIn(1000);
+    }
+  })
   $('.main-nav .tab:first').click();
 };
 
@@ -99,6 +120,22 @@ articleView.setTeasers = function () {
 
   // DONE: Add an event handler to reveal all the hidden elements, when the .read-on link is clicked. You can go ahead and hide the "Read On" link once it has been clicked. Be sure to prevent the default link-click action!
   // Ideally, we'd attach this as just one event handler on the #articles section, and let it process (in other words... delegate) any .read-on clicks that happen within child nodes.
+
+  $('#articles').on('click', 'a', function (e) {
+    e.preventDefault();
+    if ($(this).hasClass('read-on')) {
+      ($(this).prev().children().fadeIn(500))
+      $(this).prev().children().children().fadeIn(500);
+      $(this).removeClass('read-on').addClass('read-less');
+      $(this).html('&larr; Read Less');
+    } else {
+      $('.article-body *:nth-of-type(n+2)').hide();
+      $('.article-body img').hide();
+      $(this).html('Read On &rarr;');
+      $(this).removeClass('read-less').addClass('read-on');
+    }
+  })
+
   $('a.read-on').click(function() {
     console.log($(this).parent().find('p'))
     $(this).parent().find('p').show();
@@ -112,5 +149,6 @@ $(document).ready(function () {
   articleView.populateFilters();
   articleView.handleAuthorFilter();
   articleView.handleCategoryFilter();
+  articleView.handleMainNav();
   articleView.setTeasers();
 })
